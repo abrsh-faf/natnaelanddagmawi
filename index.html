@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Natnael &amp; Dagmawi — Ethiopian Restored Leather Goods</title>
+  <meta name="description" content="Ethiopia's first platform for post-consumer leather restoration, repair, and upcycling — giving your leather a second life."/>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+
+<!-- ===== NAVBAR ===== -->
+<nav>
+  <div class="container nav-inner">
+    <button class="nav-logo" onclick="navigate('home')">Natnael <span>&amp; Dagmawi</span></button>
+
+    <div class="nav-links">
+      <button class="nav-link active" data-page="home"     onclick="navigate('home')">Home</button>
+      <button class="nav-link"        data-page="shop"     onclick="navigate('shop')">Shop</button>
+      <button class="nav-link"        data-page="sell"     onclick="navigate('sell')">Sell Your Leather</button>
+      <button class="nav-link"        data-page="about"    onclick="navigate('about')">About &amp; Contact</button>
+    </div>
+
+    <div class="nav-right">
+      <button class="cart-btn" onclick="openCart()" aria-label="Open cart">
+        🛒
+        <span class="cart-badge hidden" id="cartBadge">0</span>
+      </button>
+      <button class="hamburger" id="hamburger" onclick="toggleMenu()">☰</button>
+    </div>
+  </div>
+
+  <div class="mobile-menu" id="mobileMenu">
+    <button class="nav-link" data-page="home"  onclick="navigate('home');toggleMenu()">Home</button>
+    <button class="nav-link" data-page="shop"  onclick="navigate('shop');toggleMenu()">Shop</button>
+    <button class="nav-link" data-page="sell"  onclick="navigate('sell');toggleMenu()">Sell Your Leather</button>
+    <button class="nav-link" data-page="about" onclick="navigate('about');toggleMenu()">About &amp; Contact</button>
+  </div>
+</nav>
+
+<!-- ===== CART SIDEBAR ===== -->
+<div class="cart-overlay" id="cartOverlay" onclick="closeCart()"></div>
+<div class="cart-sidebar" id="cartSidebar">
+  <div class="cart-header">
+    <h2>Shopping Cart</h2>
+    <button class="cart-close" onclick="closeCart()">✕</button>
+  </div>
+  <div class="cart-empty" id="cartEmpty">Your cart is empty</div>
+  <div class="cart-items" id="cartItems" style="display:none"></div>
+  <div class="cart-footer" id="cartFooter" style="display:none">
+    <div class="cart-total">
+      <span>Total</span>
+      <span id="cartTotal">ETB 0</span>
+    </div>
+    <button class="btn btn-primary btn-full btn-lg" onclick="navigate('checkout')">Proceed to Checkout</button>
+  </div>
+</div>
+
+<!-- ===================================================
+     PAGE: HOME
+     =================================================== -->
+<div class="page active" id="page-home">
+
+  <!-- Hero -->
+  <section class="hero">
+    <img class="hero-img" src="images/hero-leather.jpg" alt="Ethiopian leather craftsmanship"/>
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <h1>Ethiopian Leather,<br/>Reborn &amp; Refined</h1>
+      <p>We buy, restore, and sell premium leather goods — giving every piece a new story.</p>
+      <div class="hero-btns">
+        <button class="btn btn-primary btn-lg" onclick="navigate('shop')">Shop Now &rsaquo;</button>
+        <button class="btn btn-outline btn-lg" onclick="navigate('sell')">Sell Your Leather</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features -->
+  <section class="section section-alt">
+    <div class="container">
+      <div class="section-header">
+        <h2>Why Natnael &amp; Dagmawi?</h2>
+      </div>
+      <div class="grid-3">
+        <div class="feature-card">
+          <div class="feature-icon">♻️</div>
+          <h3>Sustainable</h3>
+          <p>We give leather goods a second life, reducing waste.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🛡️</div>
+          <h3>Quality Guaranteed</h3>
+          <p>Every product is carefully inspected and restored.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🤝</div>
+          <h3>Fair Trade</h3>
+          <p>We buy from sellers at fair prices across Ethiopia.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Featured Products -->
+  <section class="section">
+    <div class="container">
+      <div class="flex justify-between items-center mb-8">
+        <h2 style="font-size:clamp(1.6rem,4vw,2.1rem)">Featured Products</h2>
+        <button class="btn btn-ghost" onclick="navigate('shop')">View All &rsaquo;</button>
+      </div>
+      <div class="grid-3" id="featuredGrid"></div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <div class="cta-section">
+    <div class="container">
+      <h2>Have Leather to Sell?</h2>
+      <p>We buy used leather products at fair prices. Submit your item and we'll get back to you.</p>
+      <button class="btn btn-outline btn-lg" onclick="navigate('sell')">Submit Your Product</button>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <h3>Natnael <span>&amp; Dagmawi</span></h3>
+          <p>Ethiopian craftsmanship meets sustainability. We buy, restore, and sell premium leather goods.</p>
+        </div>
+        <div>
+          <h4>Quick Links</h4>
+          <button class="footer-link" onclick="navigate('shop')">Shop</button>
+          <button class="footer-link" onclick="navigate('sell')">Sell Your Leather</button>
+          <button class="footer-link" onclick="navigate('about')">About &amp; Contact</button>
+        </div>
+        <div>
+          <h4>Contact</h4>
+          <p>Bahir Dar, Ethiopia</p>
+          <p>info@natnaelanddagmawi.com</p>
+          <p>+251 91 234 5678</p>
+        </div>
+      </div>
+      <div class="footer-bottom">© 2026 Natnael and Dagmawi. All rights reserved.</div>
+    </div>
+  </footer>
+</div>
+
+<!-- ===================================================
+     PAGE: SHOP
+     =================================================== -->
+<div class="page" id="page-shop">
+  <div class="container flex-1 py-12">
+    <div class="page-header">
+      <h1>Our Collection</h1>
+      <p>Each piece is carefully restored and ready for its next chapter.</p>
+    </div>
+    <div class="pills">
+      <button class="pill active" data-cat="All"         onclick="renderShop('All')">All</button>
+      <button class="pill"        data-cat="Bags"        onclick="renderShop('Bags')">Bags</button>
+      <button class="pill"        data-cat="Wallets"     onclick="renderShop('Wallets')">Wallets</button>
+      <button class="pill"        data-cat="Belts"       onclick="renderShop('Belts')">Belts</button>
+      <button class="pill"        data-cat="Shoes"       onclick="renderShop('Shoes')">Shoes</button>
+      <button class="pill"        data-cat="Accessories" onclick="renderShop('Accessories')">Accessories</button>
+    </div>
+    <div class="grid-3" id="shopGrid"></div>
+  </div>
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div><h3>Natnael <span>&amp; Dagmawi</span></h3><p>Ethiopian craftsmanship meets sustainability.</p></div>
+        <div>
+          <h4>Quick Links</h4>
+          <button class="footer-link" onclick="navigate('shop')">Shop</button>
+          <button class="footer-link" onclick="navigate('sell')">Sell Your Leather</button>
+          <button class="footer-link" onclick="navigate('about')">About &amp; Contact</button>
+        </div>
+        <div><h4>Contact</h4><p>Bahir Dar, Ethiopia</p><p>info@natnaelanddagmawi.com</p><p>+251 91 234 5678</p></div>
+      </div>
+      <div class="footer-bottom">© 2026 Natnael and Dagmawi. All rights reserved.</div>
+    </div>
+  </footer>
+</div>
+
+<!-- ===================================================
+     PAGE: SELL
+     =================================================== -->
+<div class="page" id="page-sell">
+  <div class="container max-w-2xl mx-auto py-12 flex-1">
+    <div class="page-header">
+      <h1>Sell Your Leather</h1>
+      <p>Have a leather product you no longer need? Submit its details below. If approved, we'll buy it, restore it, and give it a new life.</p>
+    </div>
+
+    <div id="sellFormWrap">
+      <div class="form-card">
+        <form id="sellFormEl" onsubmit="submitSell(event)">
+          <div class="form-row form-row-2">
+            <div class="form-group">
+              <label for="sellName">Your Name</label>
+              <input id="sellName" type="text" placeholder="Full name" required/>
+            </div>
+            <div class="form-group">
+              <label for="sellPhone">Phone Number</label>
+              <input id="sellPhone" type="tel" placeholder="+251..." required/>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="sellEmail">Email</label>
+            <input id="sellEmail" type="email" placeholder="your@email.com" required/>
+          </div>
+          <div class="form-row form-row-2">
+            <div class="form-group">
+              <label for="sellType">Product Type</label>
+              <select id="sellType" required>
+                <option value="">Select type</option>
+                <option>Bag</option><option>Wallet</option><option>Belt</option>
+                <option>Shoes</option><option>Jacket</option><option>Accessories</option><option>Other</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="sellCond">Condition</label>
+              <select id="sellCond" required>
+                <option value="">Select condition</option>
+                <option>Excellent</option><option>Good</option><option>Fair</option><option>Poor / Needs Repair</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="sellPrice">Asking Price (ETB)</label>
+            <input id="sellPrice" type="number" placeholder="e.g. 2000" min="0" required/>
+          </div>
+          <div class="form-group">
+            <label for="sellDesc">Description</label>
+            <textarea id="sellDesc" rows="4" placeholder="Describe the product — brand, age, size, defects, etc." required></textarea>
+          </div>
+
+          <div class="form-group">
+            <label>Photos</label>
+            <div class="photo-previews" id="photoPreview"></div>
+            <label class="upload-area" id="uploadArea" id="uploadDropArea" for="photoInput">
+              <div class="upload-icon">⬆</div>
+              <p id="uploadHint">Drag &amp; drop photos or click to upload (max 5)</p>
+              <input type="file" id="photoInput" accept="image/*" multiple style="display:none"
+                     onchange="handleSellFiles(this.files)"/>
+            </label>
+          </div>
+
+          <button type="submit" class="btn btn-primary btn-full btn-lg" style="margin-top:.5rem">Submit for Review</button>
+        </form>
+      </div>
+    </div>
+
+    <div id="sellThanks" style="display:none">
+      <div class="thankyou">
+        <div class="check">✅</div>
+        <h2>Thank You!</h2>
+        <p>Your submission is under review. We'll contact you within 48 hours.</p>
+        <button class="btn btn-primary" onclick="initSellPage()">Submit Another</button>
+      </div>
+    </div>
+  </div>
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div><h3>Natnael <span>&amp; Dagmawi</span></h3><p>Ethiopian craftsmanship meets sustainability.</p></div>
+        <div>
+          <h4>Quick Links</h4>
+          <button class="footer-link" onclick="navigate('shop')">Shop</button>
+          <button class="footer-link" onclick="navigate('sell')">Sell Your Leather</button>
+          <button class="footer-link" onclick="navigate('about')">About &amp; Contact</button>
+        </div>
+        <div><h4>Contact</h4><p>Bahir Dar, Ethiopia</p><p>info@natnaelanddagmawi.com</p><p>+251 91 234 5678</p></div>
+      </div>
+      <div class="footer-bottom">© 2026 Natnael and Dagmawi. All rights reserved.</div>
+    </div>
+  </footer>
+</div>
+
+<!-- ===================================================
+     PAGE: ABOUT
+     =================================================== -->
+<div class="page" id="page-about">
+  <div class="container max-w-4xl mx-auto py-12 flex-1">
+
+    <!-- About Card -->
+    <div class="about-card">
+      <div class="about-head">
+        <div class="about-icon">🌿</div>
+        <h1>Natnael <span>&amp; Dagmawi</span></h1>
+      </div>
+      <p class="about-intro">
+        Ethiopia's first platform for post-consumer leather restoration, repair, and upcycling — giving
+        your leather a second life instead of a landfill.
+      </p>
+
+      <hr class="divider"/>
+
+      <!-- Services -->
+      <div class="grid-2" style="margin-bottom:1rem">
+        <div class="service-row">
+          <span class="service-icon">📦</span>
+          <div><h4>Submit your leather</h4><p>Drop off or send in your used leather goods</p></div>
+        </div>
+        <div class="service-row">
+          <span class="service-icon">🔧</span>
+          <div><h4>Request a repair</h4><p>Fix zippers, straps, and surface wear</p></div>
+        </div>
+        <div class="service-row">
+          <span class="service-icon">🛍️</span>
+          <div><h4>Shop restored pieces</h4><p>Browse glow-up bags and upcycled goods</p></div>
+        </div>
+        <div class="service-row">
+          <span class="service-icon">🚚</span>
+          <div><h4>Track your order</h4><p>Follow your piece's journey in real time</p></div>
+        </div>
+      </div>
+
+      <hr class="divider"/>
+
+      <!-- Upcycling -->
+      <h2 style="font-size:1.3rem;margin-bottom:.75rem">What is upcycling?</h2>
+      <p class="about-intro" style="margin-bottom:1.5rem">
+        Upcycling means turning something old or damaged into something new and more valuable — not melting
+        it down, but reimagining it. A worn-out leather bag becomes a wallet, a keychain, or a cardholder.
+        The material lives on, just in a better form.
+      </p>
+      <div class="upcycle-grid">
+        <div class="upcycle-card">
+          <div class="icon">✂️</div><h4>Deconstruct</h4>
+          <p>Salvage the best panels from a worn piece</p>
+        </div>
+        <div class="upcycle-card">
+          <div class="icon">✨</div><h4>Redesign</h4>
+          <p>Cut and shape into a new product</p>
+        </div>
+        <div class="upcycle-card">
+          <div class="icon">🏷️</div><h4>Revalue</h4>
+          <p>Sold again at a meaningful price</p>
+        </div>
+      </div>
+
+      <hr class="divider"/>
+
+      <!-- Why it matters -->
+      <h2 style="font-size:1.3rem;margin-bottom:1.25rem">Why it matters</h2>
+      <div class="reason-item">
+        <span class="reason-icon">🌿</span>
+        <p>Producing new leather uses enormous water and chemicals. Upcycling skips all of that.</p>
+      </div>
+      <div class="reason-item">
+        <span class="reason-icon">♻️</span>
+        <p>Leather takes 50+ years to decompose in a landfill. One upcycled wallet removes that waste permanently.</p>
+      </div>
+      <div class="reason-item">
+        <span class="reason-icon">🤲</span>
+        <p>You get a handcrafted item at a fraction of the cost of new — made by local Bahir Dar artisans.</p>
+      </div>
+
+      <div class="check-banner">
+        <span class="icon">✅</span>
+        <p>Every piece processed keeps leather out of landfill and supports local Bahir Dar artisans.</p>
+      </div>
+    </div>
+
+    <!-- Contact -->
+    <section>
+      <h2 style="font-size:clamp(1.6rem,4vw,2.1rem);margin-bottom:2rem">Contact Us</h2>
+      <div class="grid-2">
+        <div>
+          <div class="contact-row">
+            <div class="contact-icon">📍</div>
+            <div><h4>Location</h4><p>Lake Tana Road, Bahir Dar, Ethiopia</p></div>
+          </div>
+          <div class="contact-row">
+            <div class="contact-icon">📞</div>
+            <div><h4>Phone</h4><p>+251 91 234 5678</p></div>
+          </div>
+          <div class="contact-row">
+            <div class="contact-icon">✉️</div>
+            <div><h4>Email</h4><p>info@natnaelanddagmawi.com</p></div>
+          </div>
+        </div>
+        <div class="form-card">
+          <form onsubmit="submitContact(event)">
+            <div class="form-group">
+              <label for="cName">Name</label>
+              <input id="cName" type="text" placeholder="Your name" required/>
+            </div>
+            <div class="form-group">
+              <label for="cEmail">Email</label>
+              <input id="cEmail" type="email" placeholder="your@email.com" required/>
+            </div>
+            <div class="form-group">
+              <label for="cMsg">Message</label>
+              <textarea id="cMsg" rows="4" placeholder="How can we help?" required></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary btn-full">Send Message</button>
+            <p class="success-msg" id="contactSuccess">✓ Message sent! We'll get back to you soon.</p>
+          </form>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div><h3>Natnael <span>&amp; Dagmawi</span></h3><p>Ethiopian craftsmanship meets sustainability.</p></div>
+        <div>
+          <h4>Quick Links</h4>
+          <button class="footer-link" onclick="navigate('shop')">Shop</button>
+          <button class="footer-link" onclick="navigate('sell')">Sell Your Leather</button>
+          <button class="footer-link" onclick="navigate('about')">About &amp; Contact</button>
+        </div>
+        <div><h4>Contact</h4><p>Bahir Dar, Ethiopia</p><p>info@natnaelanddagmawi.com</p><p>+251 91 234 5678</p></div>
+      </div>
+      <div class="footer-bottom">© 2026 Natnael and Dagmawi. All rights reserved.</div>
+    </div>
+  </footer>
+</div>
+
+<!-- ===================================================
+     PAGE: CHECKOUT
+     =================================================== -->
+<div class="page" id="page-checkout">
+
+  <!-- Empty state -->
+  <div id="checkoutEmpty" style="display:none;flex:1;align-items:center;justify-content:center;text-align:center;padding:4rem 1rem">
+    <div>
+      <h1 style="font-size:1.6rem;margin-bottom:.5rem">Your cart is empty</h1>
+      <p style="color:var(--muted-fg);margin-bottom:1.5rem">Add some products before checking out.</p>
+      <button class="btn btn-primary btn-lg" onclick="navigate('shop')">Browse Shop</button>
+    </div>
+  </div>
+
+  <!-- Checkout main -->
+  <div id="checkoutMain" style="display:none" class="flex-1">
+    <div class="container max-w-4xl mx-auto py-12">
+      <h1 style="font-size:clamp(1.8rem,4vw,2.5rem);margin-bottom:2rem">Checkout</h1>
+      <div class="checkout-grid">
+
+        <!-- Shipping form -->
+        <div class="form-card">
+          <form onsubmit="submitOrder(event)">
+            <h2 style="font-size:1.2rem;margin-bottom:1.25rem">Shipping Information</h2>
+            <div class="form-row form-row-2">
+              <div class="form-group">
+                <label for="coName">Full Name</label>
+                <input id="coName" type="text" placeholder="Your full name" required/>
+              </div>
+              <div class="form-group">
+                <label for="coPhone">Phone</label>
+                <input id="coPhone" type="tel" placeholder="+251..." required/>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="coEmail">Email</label>
+              <input id="coEmail" type="email" placeholder="your@email.com" required/>
+            </div>
+            <div class="form-group">
+              <label for="coAddr">Delivery Address</label>
+              <input id="coAddr" type="text" placeholder="Street address, city" required/>
+            </div>
+            <div class="form-row form-row-2">
+              <div class="form-group">
+                <label for="coCity">City</label>
+                <input id="coCity" type="text" placeholder="Addis Ababa" required/>
+              </div>
+              <div class="form-group">
+                <label for="coRegion">Region</label>
+                <input id="coRegion" type="text" placeholder="Region / Sub-city"/>
+              </div>
+            </div>
+
+            <h2 style="font-size:1.2rem;margin:1.5rem 0 1rem">Payment</h2>
+            <div class="payment-info">
+              <span class="icon">🛡️</span>
+              <div>
+                <strong>Cash on Delivery / Telebirr</strong>
+                <p>Pay securely when your order is delivered, or via Telebirr mobile payment. We'll send payment instructions after order confirmation.</p>
+              </div>
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-full btn-lg" id="placeOrderBtn">Place Order</button>
+          </form>
+        </div>
+
+        <!-- Order summary -->
+        <div class="order-summary">
+          <div class="form-card">
+            <h2 style="font-size:1.15rem;margin-bottom:1rem">Order Summary</h2>
+            <div id="checkoutSummaryItems"></div>
+            <hr class="order-divider"/>
+            <div class="order-row"><span class="label">Subtotal</span><span id="checkoutSummaryTotal">ETB 0</span></div>
+            <div class="order-row"><span class="label">Delivery</span><span style="color:var(--primary);font-weight:600">Free</span></div>
+            <div class="order-row total"><span>Total</span><span id="checkoutSummaryTotal2"></span></div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div><h3>Natnael <span>&amp; Dagmawi</span></h3><p>Ethiopian craftsmanship meets sustainability.</p></div>
+        <div>
+          <h4>Quick Links</h4>
+          <button class="footer-link" onclick="navigate('shop')">Shop</button>
+          <button class="footer-link" onclick="navigate('sell')">Sell Your Leather</button>
+          <button class="footer-link" onclick="navigate('about')">About &amp; Contact</button>
+        </div>
+        <div><h4>Contact</h4><p>Bahir Dar, Ethiopia</p><p>info@natnaelanddagmawi.com</p><p>+251 91 234 5678</p></div>
+      </div>
+      <div class="footer-bottom">© 2026 Natnael and Dagmawi. All rights reserved.</div>
+    </div>
+  </footer>
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>
